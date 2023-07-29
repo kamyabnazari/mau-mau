@@ -1,4 +1,4 @@
-# Project Information and Guidelines
+# Mau Mau
 
 ![Sample Image](/readme-screenshot.png)
 
