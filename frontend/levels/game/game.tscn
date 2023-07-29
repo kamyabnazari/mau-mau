@@ -1,0 +1,882 @@
+[gd_scene load_steps=22 format=3 uid="uid://b2wrsebnu6f8q"]
+
+[ext_resource type="Script" path="res://levels/game/game.gd" id="1_r2ym6"]
+[ext_resource type="Texture2D" uid="uid://cyydwti23wfs5" path="res://shared/themes/buttons/button_square_beige.png" id="2_g4sxi"]
+[ext_resource type="Texture2D" uid="uid://br3uli4ekq300" path="res://shared/themes/round_buttons/button_round_blue.png" id="2_ubnk3"]
+[ext_resource type="Texture2D" uid="uid://dnpnc572y2wdy" path="res://shared/themes/buttons/button_square_beige_pressed.png" id="3_jv8n1"]
+[ext_resource type="Texture2D" uid="uid://onl0bgb5jxr2" path="res://shared/themes/round_buttons/icon_cross_beige.png" id="3_m7syo"]
+[ext_resource type="Texture2D" uid="uid://bk5eoaiwfroti" path="res://levels/game/assets/icons/atlas_texture_icon_pause.tres" id="4_g6gbh"]
+[ext_resource type="Texture2D" uid="uid://15shdw0esyx6" path="res://shared/themes/buttons/button_square_blue.png" id="5_ww4ol"]
+[ext_resource type="Texture2D" uid="uid://bf6jly8x5cxf4" path="res://shared/themes/buttons/button_square_blue_pressed.png" id="6_ia6pj"]
+[ext_resource type="Texture2D" uid="uid://cnnnu6kbkdtgk" path="res://levels/game/assets/icons/atlas_texture_icon_avatar_opponent.tres" id="6_v3dsw"]
+[ext_resource type="Texture2D" uid="uid://cygoqnbiqxbpm" path="res://levels/game/assets/icons/atlas_texture_icon_avatar_player.tres" id="7_2cl5y"]
+[ext_resource type="Texture2D" uid="uid://cqq4vlhmuj76i" path="res://levels/game/assets/icons/atlas_texture_icon_draw.tres" id="7_5ek2e"]
+[ext_resource type="Texture2D" uid="uid://cwxe6me1pgwnq" path="res://shared/themes/panels/panel_beige_light.png" id="10_aqfqd"]
+[ext_resource type="PackedScene" uid="uid://bfk6fjt1baqa5" path="res://levels/game/card.tscn" id="11_qapsq"]
+[ext_resource type="Script" path="res://levels/game/discard_pile.gd" id="15_60gwd"]
+[ext_resource type="Texture2D" uid="uid://rj48f7ym267q" path="res://shared/themes/round_buttons/button_round_brown.png" id="16_guus7"]
+[ext_resource type="Script" path="res://levels/game/endpoint_start_game.gd" id="17_qmc7n"]
+[ext_resource type="Script" path="res://levels/game/endpoint_get_playable_cards.gd" id="18_t2c3h"]
+[ext_resource type="Script" path="res://levels/game/endpoint_get_all_games.gd" id="19_5ladh"]
+[ext_resource type="Script" path="res://levels/game/endpoint_play_turn.gd" id="19_35jqx"]
+[ext_resource type="Texture2D" uid="uid://en3soiqew8vw" path="res://levels/game/assets/cards_atlas/atlas_texture_card_back.tres" id="19_mcdd2"]
+[ext_resource type="Script" path="res://levels/game/endpoint_get_game.gd" id="20_pwam6"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_r2ym6")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.85098, 0.847059, 0.772549, 1)
+
+[node name="PauseButton" type="TextureButton" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_top = 16.0
+offset_right = -8.0
+offset_bottom = 65.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("2_g4sxi")
+texture_pressed = ExtResource("3_jv8n1")
+stretch_mode = 3
+
+[node name="AtlasTextureIconPause" type="Sprite2D" parent="PauseButton"]
+modulate = Color(0.133333, 0.133333, 0.156863, 1)
+position = Vector2(22.6667, 22.6667)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_g6gbh")
+
+[node name="MauMauButton" type="Button" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 80.0
+offset_top = -17.6996
+offset_right = 170.0
+offset_bottom = 17.6996
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "Mau Mau"
+
+[node name="DrawButton" type="TextureButton" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -163.0
+offset_top = 48.5
+offset_right = -118.0
+offset_bottom = 97.5
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("5_ww4ol")
+texture_pressed = ExtResource("6_ia6pj")
+stretch_mode = 3
+
+[node name="AtlasTextureIconPause" type="Sprite2D" parent="DrawButton"]
+position = Vector2(24, 23.3333)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_5ek2e")
+
+[node name="AvatarOpponent" type="TextureRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 104.0
+offset_top = -148.0
+offset_right = 139.0
+offset_bottom = -110.0
+grow_vertical = 2
+texture = ExtResource("16_guus7")
+stretch_mode = 2
+
+[node name="AtlasTextureIconAvatarOpponent" type="Sprite2D" parent="AvatarOpponent"]
+texture_filter = 2
+position = Vector2(17, 17)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_v3dsw")
+
+[node name="Name" type="Label" parent="AvatarOpponent"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.5
+offset_top = 0.333344
+offset_right = 45.5
+offset_bottom = 21.3333
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Computer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentGameSuit" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 452.0
+offset_top = 95.0
+offset_right = 492.0
+offset_bottom = 135.0
+
+[node name="InfoLabel" type="Label" parent="CurrentGameSuit"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 71.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Suit:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Suit" type="Label" parent="CurrentGameSuit"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 71.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.00392157, 0.0901961, 1)
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AvatarPlayer" type="TextureRect" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 104.0
+offset_top = 108.0
+offset_right = 139.0
+offset_bottom = 146.0
+grow_vertical = 2
+texture = ExtResource("16_guus7")
+stretch_mode = 2
+
+[node name="AtlasTextureIconAvatarPlayer" type="Sprite2D" parent="AvatarPlayer"]
+texture_filter = 2
+position = Vector2(17, 17)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_2cl5y")
+
+[node name="Name" type="Label" parent="AvatarPlayer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.5
+offset_top = -61.0
+offset_right = 45.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DiscardPilePanel" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_aqfqd")
+
+[node name="DiscardPile" type="CenterContainer" parent="DiscardPilePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(70, 70)
+script = ExtResource("15_60gwd")
+card = ExtResource("11_qapsq")
+
+[node name="OpponentsHand" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -161.5
+offset_top = 16.0
+offset_right = 161.5
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_constants/separation = -15
+alignment = 1
+
+[node name="PlayersHand" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -161.5
+offset_top = -88.0
+offset_right = 161.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -15
+alignment = 1
+
+[node name="DeckPile" type="CenterContainer" parent="."]
+offset_left = 478.0
+offset_top = 150.0
+offset_right = 478.0
+offset_bottom = 150.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DeckPileVisuals" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -30.0
+offset_right = -128.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Card1" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -29.0
+offset_right = 20.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="Card2" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -29.0
+offset_right = 21.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="Card3" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="Card4" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 23.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="Card5" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -30.0
+offset_right = 23.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="Card6" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -28.0
+offset_right = 24.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="Card7" type="TextureRect" parent="DeckPileVisuals"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -30.0
+offset_right = 26.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_mcdd2")
+
+[node name="ExternalPanelOverlay" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.619608)
+
+[node name="SuitChoosingPanel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 87.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelTitle" type="Label" parent="SuitChoosingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 16.0
+offset_right = 53.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Suit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SuitHeartsButton" type="Button" parent="SuitChoosingPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -166.399
+offset_right = 47.5
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Hearts"
+
+[node name="SuitClubsButton" type="Button" parent="SuitChoosingPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -126.399
+offset_right = 47.5
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Clubs"
+
+[node name="SuitSpadesButton" type="Button" parent="SuitChoosingPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -86.3992
+offset_right = 47.5
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Spades"
+
+[node name="SuitDiamondsButton" type="Button" parent="SuitChoosingPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -46.3992
+offset_right = 47.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Diamonds"
+
+[node name="NameChoosingPanel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 87.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelTitle" type="Label" parent="NameChoosingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 16.0
+offset_right = 53.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Name?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerNameField" type="LineEdit" parent="NameChoosingPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -13.0
+offset_right = 61.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "your name?"
+alignment = 1
+max_length = 40
+
+[node name="StartButton" type="Button" parent="NameChoosingPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -46.3992
+offset_right = 47.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Start"
+
+[node name="GameChoosingPanel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 87.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelTitle" type="Label" parent="GameChoosingPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 16.0
+offset_right = 53.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GamesList" type="ItemList" parent="GameChoosingPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 49.0
+offset_right = -13.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NewGameButton" type="Button" parent="GameChoosingPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -46.3992
+offset_right = 47.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "New Game"
+
+[node name="PausePanel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 87.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelTitle" type="Label" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 16.0
+offset_right = 53.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Pause"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsLabels" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 77.0
+offset_right = 108.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="PanelText1" type="Label" parent="PausePanel/SettingsLabels"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Music"
+vertical_alignment = 1
+
+[node name="PanelText2" type="Label" parent="PausePanel/SettingsLabels"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Sound"
+vertical_alignment = 1
+
+[node name="MusicToggle" type="CheckBox" parent="PausePanel"]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 77.0
+offset_right = 159.0
+offset_bottom = 110.399
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon_alignment = 2
+
+[node name="SoundToggle" type="CheckBox" parent="PausePanel"]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 117.0
+offset_right = 159.0
+offset_bottom = 150.399
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon_alignment = 2
+
+[node name="CloseSettingsButton" type="TextureButton" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 18.0
+offset_bottom = 29.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("2_ubnk3")
+
+[node name="IconCrossBeige" type="Sprite2D" parent="PausePanel/CloseSettingsButton"]
+position = Vector2(18.6667, 18.6667)
+texture = ExtResource("3_m7syo")
+
+[node name="MainMenuButton" type="Button" parent="PausePanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -54.3992
+offset_right = 47.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Main Menu"
+
+[node name="GameWonPanel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = 44.0
+offset_right = 114.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GameWon" type="Label" parent="GameWonPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -88.5
+offset_top = 24.0
+offset_right = 88.5
+offset_bottom = 63.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.533333, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Game Won"
+
+[node name="RestartGameButton" type="Button" parent="GameWonPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -50.3992
+offset_right = 47.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Restart"
+
+[node name="GameLostPanel" type="Panel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = 44.0
+offset_right = 114.0
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="GameLost" type="Label" parent="GameLostPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = 24.0
+offset_right = 96.0
+offset_bottom = 63.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.00784314, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Game Lost"
+
+[node name="RestartGameButton" type="Button" parent="GameLostPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -50.3992
+offset_right = 47.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 14
+text = "Restart"
+
+[node name="EndpointStartGame" type="HTTPRequest" parent="."]
+use_threads = true
+script = ExtResource("17_qmc7n")
+
+[node name="EndpointGetPlayableCards" type="HTTPRequest" parent="."]
+use_threads = true
+script = ExtResource("18_t2c3h")
+
+[node name="EndpointGetAllGames" type="HTTPRequest" parent="."]
+use_threads = true
+script = ExtResource("19_5ladh")
+
+[node name="EndpointGetGame" type="HTTPRequest" parent="."]
+use_threads = true
+script = ExtResource("20_pwam6")
+
+[node name="EndpointPlayTurn" type="HTTPRequest" parent="."]
+use_threads = true
+script = ExtResource("19_35jqx")
+
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MauMauButton" to="." method="_on_mau_mau_button_pressed"]
+[connection signal="pressed" from="DrawButton" to="." method="_on_draw_button_pressed"]
+[connection signal="pressed" from="SuitChoosingPanel/SuitHeartsButton" to="." method="_on_suit_hearts_button_pressed"]
+[connection signal="pressed" from="SuitChoosingPanel/SuitClubsButton" to="." method="_on_suit_clubs_button_pressed"]
+[connection signal="pressed" from="SuitChoosingPanel/SuitSpadesButton" to="." method="_on_suit_spades_button_pressed"]
+[connection signal="pressed" from="SuitChoosingPanel/SuitDiamondsButton" to="." method="_on_suit_diamonds_button_pressed"]
+[connection signal="text_changed" from="NameChoosingPanel/PlayerNameField" to="." method="_on_player_name_field_text_changed"]
+[connection signal="pressed" from="NameChoosingPanel/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="item_clicked" from="GameChoosingPanel/GamesList" to="." method="_on_games_list_item_clicked"]
+[connection signal="pressed" from="GameChoosingPanel/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="PausePanel/MusicToggle" to="." method="_on_music_toggle_pressed"]
+[connection signal="pressed" from="PausePanel/SoundToggle" to="." method="_on_sound_toggle_pressed"]
+[connection signal="pressed" from="PausePanel/CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]
+[connection signal="pressed" from="PausePanel/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="GameWonPanel/RestartGameButton" to="." method="_on_restart_game_button_pressed"]
+[connection signal="pressed" from="GameLostPanel/RestartGameButton" to="." method="_on_restart_game_button_pressed"]

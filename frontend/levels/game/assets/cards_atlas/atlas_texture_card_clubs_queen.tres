@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b3rgja0ka1dxi"]
+
+[ext_resource type="Texture2D" uid="uid://cjpengm34konu" path="res://levels/game/assets/cards_textures/card_clubs_Q.png" id="1_ft3ko"]
+
+[resource]
+atlas = ExtResource("1_ft3ko")
+region = Rect2(11, 2, 42, 60)

@@ -1,0 +1,534 @@
+[gd_scene load_steps=24 format=3 uid="uid://bfuqqndf4g2sn"]
+
+[ext_resource type="Script" path="res://ui/main_menu/main_menu.gd" id="1_1fpsp"]
+[ext_resource type="Texture2D" uid="uid://boaxovvr4uhdt" path="res://ui/assets/backgrounds/hills1.png" id="2_26tsc"]
+[ext_resource type="Script" path="res://ui/main_menu/parallax_background.gd" id="2_jfv5x"]
+[ext_resource type="Texture2D" uid="uid://dtwal280tra8s" path="res://ui/assets/backgrounds/pointy_mountains.png" id="2_ljlgj"]
+[ext_resource type="FontFile" uid="uid://cc4oxwux4u6nh" path="res://shared/fonts/kenney_blocks.ttf" id="2_o2djo"]
+[ext_resource type="Texture2D" uid="uid://vmvpj351wygw" path="res://ui/assets/backgrounds/cloud1.png" id="3_6t2c3"]
+[ext_resource type="Texture2D" uid="uid://dxkh01fbk85lb" path="res://ui/assets/backgrounds/cloud2.png" id="4_b4ns7"]
+[ext_resource type="Texture2D" uid="uid://bq3mm7uj0wtli" path="res://ui/assets/backgrounds/cloud3.png" id="5_02lux"]
+[ext_resource type="Texture2D" uid="uid://cc6mwlfoa1oed" path="res://ui/assets/backgrounds/cloud6.png" id="6_2088j"]
+[ext_resource type="Texture2D" uid="uid://0v1wpx7okhc1" path="res://ui/assets/backgrounds/cloud7.png" id="7_brjw1"]
+[ext_resource type="Texture2D" uid="uid://c7jr24mgt4s0o" path="res://ui/assets/backgrounds/cloud9.png" id="8_vdayr"]
+[ext_resource type="Texture2D" uid="uid://dqmco5e81l2th" path="res://ui/assets/backgrounds/cloud4.png" id="10_216x4"]
+[ext_resource type="Texture2D" uid="uid://d2n1tr7trt0ak" path="res://ui/assets/backgrounds/cloud5.png" id="11_ia5df"]
+[ext_resource type="Texture2D" uid="uid://dmlcog8r7mafm" path="res://ui/assets/backgrounds/cloud8.png" id="12_hjhs1"]
+[ext_resource type="Texture2D" uid="uid://b7jtehh62tmbp" path="res://ui/assets/backgrounds/castle_grey.png" id="13_yxxox"]
+[ext_resource type="Texture2D" uid="uid://o3mha4qhi53x" path="res://ui/assets/backgrounds/grass5.png" id="15_twxtu"]
+[ext_resource type="Texture2D" uid="uid://cast3b2rwpkct" path="res://ui/assets/backgrounds/tree10.png" id="15_xu7f8"]
+[ext_resource type="Texture2D" uid="uid://btu2ap1p5eqll" path="res://ui/assets/backgrounds/grass6.png" id="16_fxe82"]
+[ext_resource type="Texture2D" uid="uid://c0u8vhnbxxalo" path="res://shared/themes/round_buttons/button_round_blue.png" id="19_ddm8m"]
+[ext_resource type="Texture2D" uid="uid://ds1occ65lojxq" path="res://shared/themes/round_buttons/icon_cross_beige.png" id="20_cacw1"]
+
+[sub_resource type="Animation" id="Animation_ltjbw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameTitle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(170, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_6iceg"]
+resource_name = "title_anim"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameTitle:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(170, 24), Vector2(170, 15), Vector2(170, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4she4"]
+_data = {
+"RESET": SubResource("Animation_ltjbw"),
+"title_anim": SubResource("Animation_6iceg")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1fpsp")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("2_jfv5x")
+
+[node name="BackgroundBase" type="ColorRect" parent="ParallaxBackground"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.85098, 0.847059, 0.772549, 1)
+
+[node name="ParallaxMountains" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.831373, 0.733333, 0.607843, 1)
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(640, 2.08165e-12)
+
+[node name="PointyMountains" type="Sprite2D" parent="ParallaxBackground/ParallaxMountains"]
+modulate = Color(0.713726, 0.713726, 0.713726, 1)
+position = Vector2(319, 250)
+scale = Vector2(0.64036, 1)
+texture = ExtResource("2_ljlgj")
+
+[node name="ParallaxClouds" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 1, 1, 0.784314)
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(640, 2.08165e-12)
+
+[node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds"]
+position = Vector2(156.25, 179)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_6t2c3")
+
+[node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds"]
+position = Vector2(557.25, 62)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("5_02lux")
+
+[node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds"]
+position = Vector2(535.25, 184)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("6_2088j")
+
+[node name="Cloud4" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds"]
+position = Vector2(223.25, 205)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("7_brjw1")
+
+[node name="Cloud5" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds"]
+position = Vector2(220, 47)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("8_vdayr")
+
+[node name="ParallaxClouds2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(1, 1, 1, 0.784314)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(640, 2.08165e-12)
+
+[node name="Cloud1" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(286, 90)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_6t2c3")
+
+[node name="Cloud2" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(396.5, 41.9)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_b4ns7")
+
+[node name="Cloud3" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(476.3, 38.9)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_02lux")
+
+[node name="Cloud4" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(129, 39)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("10_216x4")
+
+[node name="Cloud5" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(450.2, 169.6)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("11_ia5df")
+
+[node name="Cloud6" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(377.3, 82.9)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_2088j")
+
+[node name="Cloud7" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(502.3, 97.9)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_brjw1")
+
+[node name="Cloud8" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(202.3, 113.9)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_hjhs1")
+
+[node name="Cloud9" type="Sprite2D" parent="ParallaxBackground/ParallaxClouds2"]
+position = Vector2(75, 84)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_vdayr")
+
+[node name="ParallaxCastle" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(640, 2.08165e-12)
+
+[node name="CastleGrey" type="Sprite2D" parent="ParallaxBackground/ParallaxCastle"]
+position = Vector2(193, 247)
+rotation = 0.1016
+scale = Vector2(0.705771, 0.705771)
+texture = ExtResource("13_yxxox")
+
+[node name="ParallaxHills" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.803922, 1, 0.470588, 1)
+motion_mirroring = Vector2(640, 2.08165e-12)
+
+[node name="BackgroundHills" type="Sprite2D" parent="ParallaxBackground/ParallaxHills"]
+position = Vector2(320.82, 297)
+scale = Vector2(0.64036, 1)
+texture = ExtResource("2_26tsc")
+
+[node name="Tree10" type="Sprite2D" parent="ParallaxBackground/ParallaxHills"]
+position = Vector2(378, 195)
+rotation = -0.125886
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("15_xu7f8")
+
+[node name="Grass5" type="Sprite2D" parent="ParallaxBackground/ParallaxHills"]
+position = Vector2(140.649, 273)
+rotation = 0.206634
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_twxtu")
+
+[node name="Grass7" type="Sprite2D" parent="ParallaxBackground/ParallaxHills"]
+position = Vector2(560.649, 290)
+rotation = 0.104392
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("15_twxtu")
+
+[node name="Grass6" type="Sprite2D" parent="ParallaxBackground/ParallaxHills"]
+position = Vector2(430.649, 235)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_fxe82")
+
+[node name="Grass8" type="Sprite2D" parent="ParallaxBackground/ParallaxHills"]
+position = Vector2(47.649, 239)
+rotation = 0.0177073
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_fxe82")
+
+[node name="GameTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_top = 24.0
+offset_right = 150.0
+offset_bottom = 117.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.960784, 0.278431, 0.105882, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.403922)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_o2djo")
+theme_override_font_sizes/font_size = 60
+text = "MauMau"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -235.0
+offset_right = 62.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MenuButtonContainer" type="VBoxContainer" parent="MenuPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -67.0
+offset_right = 44.5
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="MenuPanel/MenuButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MenuPanel/MenuButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Settings"
+
+[node name="CreditsButton" type="Button" parent="MenuPanel/MenuButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="MenuPanel/MenuButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Quit"
+
+[node name="ExternalPanelOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.619608)
+
+[node name="CreditsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 87.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelTitle" type="Label" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 16.0
+offset_right = 53.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelText1" type="Label" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.5
+offset_top = -156.0
+offset_right = 63.5
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Group 2
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PanelText2" type="Label" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -63.5
+offset_top = -82.0
+offset_right = 63.5
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "All Art under cc0
+From Kenney.nl"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CloseCreditsButton" type="TextureButton" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 18.0
+offset_bottom = 29.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("19_ddm8m")
+
+[node name="IconCrossBeige" type="Sprite2D" parent="CreditsPanel/CloseCreditsButton"]
+position = Vector2(18.6667, 18.6667)
+texture = ExtResource("20_cacw1")
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -86.0
+offset_top = 40.0
+offset_right = 87.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PanelTitle" type="Label" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -53.5
+offset_top = 16.0
+offset_right = 53.5
+offset_bottom = 46.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.392157)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "sETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsLabels" type="VBoxContainer" parent="SettingsPanel"]
+layout_mode = 2
+offset_left = 23.0
+offset_top = 77.0
+offset_right = 108.0
+offset_bottom = 168.0
+theme_override_constants/separation = 20
+
+[node name="PanelText1" type="Label" parent="SettingsPanel/SettingsLabels"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Fullscreen"
+vertical_alignment = 1
+
+[node name="PanelText2" type="Label" parent="SettingsPanel/SettingsLabels"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Music"
+vertical_alignment = 1
+
+[node name="PanelText3" type="Label" parent="SettingsPanel/SettingsLabels"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 12
+text = "Sound"
+vertical_alignment = 1
+
+[node name="FullscreenToggle" type="CheckBox" parent="SettingsPanel"]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 73.0
+offset_right = 159.0
+offset_bottom = 106.399
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon_alignment = 2
+
+[node name="MusicToggle" type="CheckBox" parent="SettingsPanel"]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 109.0
+offset_right = 159.0
+offset_bottom = 142.399
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon_alignment = 2
+
+[node name="SoundToggle" type="CheckBox" parent="SettingsPanel"]
+layout_mode = 2
+offset_left = 129.0
+offset_top = 149.0
+offset_right = 159.0
+offset_bottom = 182.399
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon_alignment = 2
+
+[node name="CloseSettingsButton" type="TextureButton" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -17.0
+offset_top = -9.0
+offset_right = 18.0
+offset_bottom = 29.0
+grow_horizontal = 0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("19_ddm8m")
+
+[node name="IconCrossBeige" type="Sprite2D" parent="SettingsPanel/CloseSettingsButton"]
+position = Vector2(18.6667, 18.6667)
+texture = ExtResource("20_cacw1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "title_anim"
+libraries = {
+"": SubResource("AnimationLibrary_4she4")
+}
+
+[connection signal="pressed" from="MenuPanel/MenuButtonContainer/PlayButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MenuPanel/MenuButtonContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuPanel/MenuButtonContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MenuPanel/MenuButtonContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CreditsPanel/CloseCreditsButton" to="." method="_on_close_credits_button_pressed"]
+[connection signal="pressed" from="SettingsPanel/FullscreenToggle" to="." method="_on_fullscreen_toggle_pressed"]
+[connection signal="pressed" from="SettingsPanel/MusicToggle" to="." method="_on_music_toggle_pressed"]
+[connection signal="pressed" from="SettingsPanel/SoundToggle" to="." method="_on_sound_toggle_pressed"]
+[connection signal="pressed" from="SettingsPanel/CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://b0rgef0cim8ua"]
+
+[ext_resource type="Texture2D" uid="uid://xtl4yl3i6vy1" path="res://levels/game/assets/cards_textures/card_diamonds_J.png" id="1_diyk6"]
+
+[resource]
+atlas = ExtResource("1_diyk6")
+region = Rect2(11, 2, 42, 60)

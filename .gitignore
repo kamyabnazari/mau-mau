@@ -1,0 +1,6 @@
+target
+.idea
+*.iml
+/kartenspiel-app/kartenspiel-app.iml
+.DS_Store
+.vscode

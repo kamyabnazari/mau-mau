@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bk5eoaiwfroti"]
+
+[ext_resource type="Texture2D" uid="uid://c14cl01ev18ly" path="res://levels/game/assets/icons/tileset_kenney_icons.png" id="1_chxwn"]
+
+[resource]
+atlas = ExtResource("1_chxwn")
+region = Rect2(261, 6, 54, 47)
