@@ -1,6 +1,6 @@
 # Mau Mau
 
-![Sample Image](/readme-screenshot.png)
+![Banner Image](/readme-screenshot.png)
 
 MauMau game with a dedicated backend.
 
