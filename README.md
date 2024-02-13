@@ -1,6 +1,6 @@
 # Mau Mau
 
-![Banner Image](/readme-screenshot.png)
+![Banner Image](cover-open-source-mau-mau.webp)
 
 MauMau game with a dedicated backend.
 
